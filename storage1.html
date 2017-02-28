@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+  	<title></title>
+  	<style></style>
+  	<script>
+      window.onload=function(){
+      	var aInput  = document.getElementsByTagName("input");
+      	aInput[0].onclick = function(){
+      		//sessionStorage:临时性存储
+      		//localStorage:永久性存储
+      		//window.sessionStorage.setItem("name",aInput[3].value);
+      		window.localStorage.setItem("name",aInput[3].value);
+
+      	}
+      	aInput[1].onclick=function(){
+      		//alert(window.sessionStorage.getItem("name"));
+      		alert(window.localStorage.getItem("name"));
+      	}
+      	aInput[2].onclick = function(){
+      		//window.sessionStorage.removeItem("name");
+      		window.localStorage.removeItem("name");
+      	}
+        window.addEventListener("storage",function(ev){
+          console.log(ev.key);
+          console.log(ev.newValue);
+          console.log(ev.oldValue);
+          console.log(ev.storageArea);
+          console.log(ev.url);
+        },false)
+      }
+  	</script>
+  </head>
+  <body>
+  	<input type="button" value="存储">
+  	<input type="button" value="获取">
+  	<input type="button" value="删除">
+  	<input type="text">
+  </body>
+</html>

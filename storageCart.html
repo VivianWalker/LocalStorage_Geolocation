@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+  	<title></title>
+  	<style></style>
+  	<script>
+        window.onload = function(){
+        	var aInput = document.getElementsByTagName("input");
+        	for(var i=0;i<aInput.length;i++){
+        		aInput[i].onclick = function(){
+        			if(this.checked){
+        				window.localStorage.setItem("sel",this.value)
+        			}else{
+        				window.localStorage.setItem("onSel",this.value);
+        			}
+        		};
+        	}
+        	window.addEventListener("storage",function(ev){
+        		
+        			for(var i=0;i<aInput.length;i++){
+
+        				if(ev.newValue==aInput[i].value){
+                  if(ev.key=="sel")
+        					  aInput[i].checked=true;
+                  else if(ev.key=="onSel"){
+                    aInput[i].checked=false;
+                  }
+        				}
+        			}
+        		
+        	},false)
+        }
+  	</script>
+  </head>
+  <body>
+  	<input type="checkbox" value="香蕉" />香蕉<br />
+  	<input type="checkbox" value="苹果" />苹果<br />
+  	<input type="checkbox" value="西瓜" />西瓜<br />
+  	<input type="checkbox" value="哈密瓜" />哈密瓜<br />
+  </body>
+</html>
